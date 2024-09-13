@@ -7,9 +7,27 @@
 
 
 // YOUR CODE HERE
+function Device(brand){
+  this._brand = brand
+}
 
 
+function Smartphone(brand, model){
+  Device.call(this, brand)
+  this._model = model
+}
 
+Device.prototype.powerOn = function(){
+  console.log(`${this._brand} device is now powered on.`)
+}
+
+Smartphone.prototype = Object.create(Device.prototype)
+Smartphone.prototype.construnctor = Smartphone
+
+
+Smartphone.prototype.call = function(){
+  console.log(`Calling from ${this._brand} ${this._model}.`)
+}
 
 // Test the Smartphone prototype with inheritance
 const myPhone = new Smartphone("Apple", "iPhone 14");

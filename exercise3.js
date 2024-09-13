@@ -4,21 +4,20 @@
 // 2. Ensure the functionality remains the same after converting.
 
 
-class Person {
-  constructor(firstName, lastName) {
+function Person (firstName, lastName){
     this.firstName = firstName;
     this.lastName = lastName;
-  }
-  
-  getFullName() {
-    return `${this.firstName} ${this.lastName}`;
-  }
-  
-  greet() {
-    console.log(`Hello, my name is ${this.getFullName()}.`);
-  }
-}
 
+  Object.defineProperty(this, "fullName", {
+    get: function(){
+      return `${this.firstName} ${this.lastName}`
+    }
+  })
+}
+  
+  Person.prototype.greet = function() {
+    console.log(`Hello, my name is ${this.fullName}.`);
+  }
 
 // Test the Person constructor function
 const john = new Person("John", "Doe");
